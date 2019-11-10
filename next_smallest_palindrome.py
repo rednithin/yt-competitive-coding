@@ -11,7 +11,7 @@ def split_num(num):
 
     Examples:
         1221    -> ('12', '', '21')
-        12321   -> ('12', '3', '21')
+        12340   -> ('12', '3', '40')
     '''
     str_num = str(num)
     str_len = len(str_num)
@@ -44,7 +44,7 @@ def next_smallest_palindrome(x):
     left, mid, right = split_num(num)
     len_num = len(str(num))
 
-    if num == 10 ** len_num - 1:  # Special case
+    if num == 10 ** len_num - 1:  # Special case. eg: 999 = 10 ^ 3 - 1
         return num + 2
     elif mid == '':
         if not int(left[::-1]) > int(right):  # Rev(Left) Not greather than Right
@@ -61,19 +61,23 @@ def next_smallest_palindrome(x):
     return int(left + mid + right)
 
 
+# Basic Test cases
 assert(next_smallest_palindrome(8) == 9)
 assert(next_smallest_palindrome(9) == 11)
 assert(next_smallest_palindrome(11) == 22)
+assert(next_smallest_palindrome(15) == 22)
 
+# [Case1 - Odd and Even length numbers] - Rev(Left) > Right
 assert(next_smallest_palindrome(1200) == 1221)
 assert(next_smallest_palindrome(12300) == 12321)
 
 
+# Case 2  - Odd and Even length numbers - Rev(Left) <= Right
 assert(next_smallest_palindrome(1221) == 1331)
 assert(next_smallest_palindrome(12321) == 12421)
-
 assert(next_smallest_palindrome(1224) == 1331)
 assert(next_smallest_palindrome(12324) == 12421)
 
+# Special Cases Testcases.
 assert(next_smallest_palindrome(9999) == 10001)
 assert(next_smallest_palindrome(99999) == 100001)
