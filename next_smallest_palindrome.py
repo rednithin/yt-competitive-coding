@@ -1,13 +1,13 @@
 def split_num(num):
     '''
-    Splits the number into beg, mid, end numbers.
+    Splits the number into left, mid, right numbers.
     Incase of an even length number mid == ''
 
     Parameters:
         num (int): An integer greater than 9
 
     Result:
-        (beg, mid, end) (str, str, str): The number split into the 3
+        (left, mid, right) (str, str, str): The number split into the 3
 
     Examples:
         1221    -> ('12', '', '21')
@@ -42,24 +42,24 @@ def next_smallest_palindrome(x):
     num = x
 
     while True:
-        beg, mid, end = split_num(num)
+        left, mid, right = split_num(num)
         len_num = len(str(num))
 
         if num == 10 ** len_num - 1:
             return num + 2
         elif mid == '':
-            if not int(beg[::-1]) > int(end):
-                beg = str(int(beg) + 1)
+            if not int(left[::-1]) > int(right):
+                left = str(int(left) + 1)
 
-            end = beg[::-1]
+            right = left[::-1]
         else:
-            if not int(beg[::-1]) > int(end):
-                beg_mid = str(int(beg + mid) + 1)
-                beg, mid = beg_mid[:-1], beg_mid[-1]
+            if not int(left[::-1]) > int(right):
+                left_mid = str(int(left + mid) + 1)
+                left, mid = left_mid[:-1], left_mid[-1]
 
-            end = beg[::-1]
+            right = left[::-1]
 
-        str_num = beg + mid + end
+        str_num = left + mid + right
         num = int(str_num)
 
         if str_num == str_num[::-1]:
