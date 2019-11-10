@@ -47,12 +47,12 @@ def next_smallest_palindrome(x):
     if num == 10 ** len_num - 1:  # Special case. eg: 999 = 10 ^ 3 - 1
         return num + 2
     elif mid == '':
-        if not int(left[::-1]) > int(right):  # Rev(Left) Not greather than Right
+        if not int(left[::-1]) > int(right):  # Rev(Left) Not greater than Right
             left = str(int(left) + 1)
 
         right = left[::-1]
     else:
-        if not int(left[::-1]) > int(right):  # Rev(Left) Not greather than Right
+        if not int(left[::-1]) > int(right):  # Rev(Left) Not greater than Right
             left_mid = str(int(left + mid) + 1)
             left, mid = left_mid[:-1], left_mid[-1]
 
