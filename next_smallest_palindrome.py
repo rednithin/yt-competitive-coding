@@ -41,29 +41,24 @@ def next_smallest_palindrome(x):
 
     num = x
 
-    while True:
-        left, mid, right = split_num(num)
-        len_num = len(str(num))
+    left, mid, right = split_num(num)
+    len_num = len(str(num))
 
-        if num == 10 ** len_num - 1:
-            return num + 2
-        elif mid == '':
-            if not int(left[::-1]) > int(right):
-                left = str(int(left) + 1)
+    if num == 10 ** len_num - 1:  # Special case
+        return num + 2
+    elif mid == '':
+        if not int(left[::-1]) > int(right):  # Rev(Left) Not greather than Right
+            left = str(int(left) + 1)
 
-            right = left[::-1]
-        else:
-            if not int(left[::-1]) > int(right):
-                left_mid = str(int(left + mid) + 1)
-                left, mid = left_mid[:-1], left_mid[-1]
+        right = left[::-1]
+    else:
+        if not int(left[::-1]) > int(right):  # Rev(Left) Not greather than Right
+            left_mid = str(int(left + mid) + 1)
+            left, mid = left_mid[:-1], left_mid[-1]
 
-            right = left[::-1]
+        right = left[::-1]
 
-        str_num = left + mid + right
-        num = int(str_num)
-
-        if str_num == str_num[::-1]:
-            return num
+    return int(left + mid + right)
 
 
 assert(next_smallest_palindrome(8) == 9)
