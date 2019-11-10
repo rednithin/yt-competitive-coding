@@ -50,13 +50,17 @@ def next_smallest_palindrome(x):
         if not int(left[::-1]) > int(right):  # Rev(Left) Not greater than Right
             left = str(int(left) + 1)
 
-        right = left[::-1]
+        right = left[::-1]  # Mirroring Operation
     else:
         if not int(left[::-1]) > int(right):  # Rev(Left) Not greater than Right
             left_mid = str(int(left + mid) + 1)
+
+            # Recomputation of left and mid is required. eg: 12940;
+            # Prev = ('12', '9', '40')
+            # Next = ('13', '0', '40')
             left, mid = left_mid[:-1], left_mid[-1]
 
-        right = left[::-1]
+        right = left[::-1]  # Mirroring Operation
 
     return int(left + mid + right)
 
